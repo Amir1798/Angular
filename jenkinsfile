@@ -1,6 +1,15 @@
 pipeline {
     agent any
     stages {
+
+         stage('Getting project from Git') {
+            steps{
+      			checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+			extensions: [],
+			userRemoteConfigs: [[url: 'https://github.com/Amir1798/Angular.git']]])
+            }
+        }
+
         stage('Checkout') {
             steps {
                 checkout scm
